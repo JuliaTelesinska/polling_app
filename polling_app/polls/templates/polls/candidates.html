@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Candidates</title>
+</head>
+<body>
+    <h3>Candidates you can cast your vote for: </h3>
+    <ul>
+        {% for candidate in candidates %}
+        <li>
+            {{candidate.first_name}} {{candidate.last_name}}, {{candidate.party}}, {{candidate.age}} lat
+        </li>
+        {% endfor %}
+    </ul>
+<a href="">Add your own candidate </a><br>
+<a href="{% url 'starting' %}">Home</a>
+</body>
+</html>
