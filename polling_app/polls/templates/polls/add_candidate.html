@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Adding a candidate</title>
-</head>
-<body>
-<h3>You are adding a new candidate to the election</h3>
+{% extends 'base.html' %}
+{% block title %}Adding a candidate{% endblock %}
 
-</body>
-</html>
+{% block content %}
+<h3>You are adding a new candidate to the election</h3>
+<form method="post">
+    <table>
+        {{ form }}
+    </table>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Submit a candidate</button>
+</form>
+
+{% endblock %}
