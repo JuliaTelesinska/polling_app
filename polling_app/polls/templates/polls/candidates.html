@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Candidates</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Candidates{% endblock %}
+
+{% block content %}
     <h3>Candidates you can cast your vote for: </h3>
     <ul>
         {% for candidate in candidates %}
@@ -13,7 +10,6 @@
         </li>
         {% endfor %}
     </ul>
-<a href="">Add your own candidate </a><br>
-<a href="{% url 'starting' %}">Home</a>
-</body>
-</html>
+<a href="{% url 'add_candidate' %}" class="btn btn-primary"> Add a candidate </a><br/><br/>
+<a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+{% endblock %}
