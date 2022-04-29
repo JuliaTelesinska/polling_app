@@ -2,14 +2,14 @@
 {% block title %}Adding a candidate{% endblock %}
 
 {% block content %}
-<h3>You are adding a new candidate to the election</h3>
+<h3>You are creating a new election</h3>
 <form method="post">
     <table>
-        {{ form }}
+        {{ event }}
     </table>
     <br/>
     {% csrf_token %}
-    <button type="submit" class="btn btn-primary">Submit a candidate</button> <br/><br/>
+    <button type="submit" class="btn btn-primary">Submit election</button> <br/><br/>
     <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
 </form>
 
