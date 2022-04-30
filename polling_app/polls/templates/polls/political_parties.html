@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Political Parties{% endblock %}
+
+{% block content %}
+<h3>Political parties you can choose: </h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nazwa partii</th>
+          <th scope="col">Data założenia</th>
+          <th scope="col">Liczba członków</th>
+        </tr>
+      </thead>
+        <tbody>
+            {% for party in political_parties %}
+            <tr>
+                    <td>{{party.party_name}}</td>
+                    <td>{{party.founding_date}} </td>
+                    <td> {{party.num_members}} </td>
+            </tr>
+            {% endfor %}
+      </tbody>
+    </table>
+
+<a href="{% url 'add_political_party' %}" class="btn btn-primary"> Add a political party </a><br/><br/>
+<a href="{% url 'home' %}" class="btn btn-secondary">Home</a><br/><br/>
+
+{% endblock %}

@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
 from django.forms import modelform_factory
-from .models import Candidate,Event
+from .models import Candidate, Event, PoliticalParty
 from django.http import HttpResponse
 import csv
 import codecs
-
-# Create your views here.
-
+from django.shortcuts import render
+from django.views import generic
 
 def starting(request):
     return render(request, 'polls/welcome.html')
@@ -15,7 +14,6 @@ def starting(request):
 def view_candidates(request):
     return render(request, 'polls/candidates.html',
                   {"candidates": Candidate.objects.all()},)
-
 
 CandidateForm = modelform_factory(Candidate, exclude=[])
 
@@ -30,14 +28,12 @@ def add_candidate(request):
         form = CandidateForm()
     return render(request, 'polls/add_candidate.html', {"form": form})
 
-
 EventForm = modelform_factory(Event, exclude=[])
 
 
 def view_elections(request):
     return render(request, 'polls/elections.html',
                   {"events": Event.objects.all()},)
-
 
 def add_election(request):
     if request.method == "POST":
@@ -48,6 +44,23 @@ def add_election(request):
     else:
         event = EventForm()
     return render(request, 'polls/add_election.html', {"event": event})
+
+
+def view_political_parties(request):
+    return render(request, 'polls/political_parties.html',
+                  {"political_parties": PoliticalParty.objects.all()},)
+
+def add_political_party(request):
+    if request.method == "POST":
+        form = PoliticalPartyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    else:
+        form = PoliticalPartyForm()
+    return render(request, 'polls/add_political_party.html', {"form": form})
+
+PoliticalPartyForm = modelform_factory(PoliticalParty, exclude=[])
 
 
 def download_csv(request):
@@ -65,3 +78,22 @@ def download_csv(request):
             row.append(str(candidate.first_name) + " " + str(candidate.last_name))
         writer.writerow(row)
     return response
+
+def pie_chart(request):
+    #do poprawy, bo coś nie działa
+    data = []
+    labels = []
+    for event in Event.objects.all():
+        for candidate in event.candidate.all():
+            if candidate.party not in labels:
+                data.append(1)
+                labels.append(candidate.party)
+            else:
+                idx = labels.index(candidate.party)
+                data[idx] += 1
+
+    return render(request, 'polls/pie_chart.html', {
+        'labels': labels,
+        'data': data,
+    })
+

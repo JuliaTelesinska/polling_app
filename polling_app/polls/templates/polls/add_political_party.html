@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Adding a political party{% endblock %}
+
+{% block content %}
+<h3>You are adding a new political party</h3>
+<form method="post">
+    <table>
+        {{ form }}
+    </table>
+    <br/>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Submit a political party</button> <br/><br/>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+</form>
+
+{% endblock %}
