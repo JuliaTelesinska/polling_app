@@ -3,7 +3,7 @@
 
 {% block content %}
 
- <h3>Political parties in our elections: </h3><br>
+ <h3>Political party distribution of enrolled candidates: </h3><br/>
   <div id="container" style="width: 75%;">
     <canvas id="pie_chart"></canvas>
   </div>
@@ -30,7 +30,7 @@
       window.myPie = new Chart(ctx, config);
     };
 
-  </script>
-  <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+  </script><br/><br/>
+ <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
 
 {% endblock %}
