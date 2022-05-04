@@ -2,6 +2,8 @@
 {% block title %}Pie Chart{% endblock %}
 
 {% block content %}
+
+ <h3>Political parties in our elections: </h3><br>
   <div id="container" style="width: 75%;">
     <canvas id="pie_chart"></canvas>
   </div>
@@ -13,11 +15,11 @@
       type: 'pie',
       data: {
         datasets: [{
-          data: {{ data}},
-          backgroundColor: '#696969', '#808080', '#A9A9A9'],
+          data: {{ data|safe}},
+          backgroundColor: ['#96C0B7', '#878E88', '#725752', '#d4dfc7', '#fef6c9'],
           label: 'Political Party'
         }],
-        labels: {{ labels}}
+        labels: {{ labels|safe}}
       },
       options: {
         responsive: true

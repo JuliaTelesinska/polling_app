@@ -5,15 +5,25 @@ from django.http import HttpResponse
 import csv
 import codecs
 from django.shortcuts import render
-from django.views import generic
+from django.core.paginator import Paginator
 
 def starting(request):
     return render(request, 'polls/welcome.html')
 
 
 def view_candidates(request):
+    '''
+    number = len(Event.objects.all())
+    p = Paginator(Candidate.objects.all(), 2)
     return render(request, 'polls/candidates.html',
-                  {"candidates": Candidate.objects.all()},)
+                  {"candidates": p},)
+    '''
+    events_list = Event.objects.all()
+    paginator = Paginator(events_list, 1)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'polls/candidates.html', {'page_obj': page_obj})
 
 CandidateForm = modelform_factory(Candidate, exclude=[])
 
@@ -80,20 +90,18 @@ def download_csv(request):
     return response
 
 def pie_chart(request):
-    #do poprawy, bo coś nie działa
+    #do poprawy
     data = []
     labels = []
     for event in Event.objects.all():
         for candidate in event.candidate.all():
-            if candidate.party not in labels:
+            if candidate.party.party_name not in labels:
                 data.append(1)
-                labels.append(candidate.party)
+                labels.append(candidate.party.party_name)
             else:
-                idx = labels.index(candidate.party)
+                idx = labels.index(candidate.party.party_name)
                 data[idx] += 1
-
     return render(request, 'polls/pie_chart.html', {
         'labels': labels,
         'data': data,
     })
-
