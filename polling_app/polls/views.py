@@ -6,24 +6,10 @@ import csv
 import codecs
 from django.shortcuts import render
 from django.core.paginator import Paginator
+from .filters import CandidateFilter
 
 def starting(request):
     return render(request, 'polls/welcome.html')
-
-
-def view_candidates(request):
-    '''
-    number = len(Event.objects.all())
-    p = Paginator(Candidate.objects.all(), 2)
-    return render(request, 'polls/candidates.html',
-                  {"candidates": p},)
-    '''
-    events_list = Event.objects.all()
-    paginator = Paginator(events_list, 1)
-
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'polls/candidates.html', {'page_obj': page_obj})
 
 CandidateForm = modelform_factory(Candidate, exclude=[])
 
@@ -41,9 +27,18 @@ def add_candidate(request):
 EventForm = modelform_factory(Event, exclude=[])
 
 
+def view_candidates(request):
+    return render(request, 'polls/candidates.html',
+                  {"candidates": Candidate.objects.all()},)
+
+
 def view_elections(request):
-    return render(request, 'polls/elections.html',
-                  {"events": Event.objects.all()},)
+    events_list = Event.objects.all()
+    paginator = Paginator(events_list, 1)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'polls/elections.html', {'page_obj': page_obj})
 
 def add_election(request):
     if request.method == "POST":
@@ -105,3 +100,13 @@ def pie_chart(request):
         'labels': labels,
         'data': data,
     })
+
+def filtration(request):
+    candidates = Candidate.objects.all()
+    myFilter = CandidateFilter(request.GET, queryset=candidates)
+    candidates = myFilter.qs
+    context = {
+        'myFilter': myFilter,
+        'candidates': candidates,
+    }
+    return render(request, 'polls\candidates.html', context)
