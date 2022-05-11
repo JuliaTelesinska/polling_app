@@ -13,6 +13,7 @@ class PoliticalParty(models.Model):
 class Candidate(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    candidate_picture = models.ImageField(null=True, blank=True, upload_to="images/", default='images/blank_picture.png')
     party = models.ForeignKey(PoliticalParty, on_delete=models.CASCADE)
     age = models.IntegerField()
 

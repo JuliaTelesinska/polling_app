@@ -6,6 +6,7 @@
 
 {% for event in page_obj %}
     Nazwa wydarzenia: <b>{{ event.event_name|upper }}</b><br>
+    Data wydarzenia: {{ event.date }}<br>
     {%for candidate in event.candidate.all %}
         <li>
             <b>{{candidate.first_name}} {{candidate.last_name}}</b>, {{candidate.party}}, {{candidate.age}} lat
