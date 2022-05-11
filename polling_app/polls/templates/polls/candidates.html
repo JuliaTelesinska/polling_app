@@ -5,10 +5,11 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Imię</th>
-          <th scope="col">Nazwisko</th>
-          <th scope="col">Partia</th>
-            <th scope="col">Wiek</th>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Political party</th>
+            <th scope="col">Age</th>
+            <th scope="col">Picture</th>
         </tr>
       </thead>
         <tbody>
@@ -18,6 +19,11 @@
                     <td>{{candidate.last_name}} </td>
                     <td> {{candidate.party}} </td>
                     <td> {{candidate.age}} </td>
+                    {% if candidate.candidate_picture %}
+                    <td> <img src ="{{candidate.candidate_picture.url}}" width = 100> <a href="{{candidate.candidate_picture.url}}" download> Download picture </a></td>
+                    {% else %}
+                    <td>No picture available</td>
+                    {% endif %}
             </tr>
             {% endfor %}
       </tbody>
