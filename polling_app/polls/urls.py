@@ -13,5 +13,4 @@ urlpatterns = [
     path('political_parties', views.view_political_parties, name="view_political_parties"),
     path('download_csv', views.download_csv, name="download_csv"),
     path('pie_chart/', views.pie_chart, name="pie_chart"),
-    path('filtration', views.filtration, name="filtration"),
 ]

@@ -4,8 +4,6 @@ from django_filters import CharFilter
 
 
 class CandidateFilter(django_filters.FilterSet):
-    title = CharFilter(field_name="first_name", lookup_expr='icontains')
-
-    class Meta:
+   class Meta:
         model = Candidate
-        fields = ['first_name']
+        fields = ['first_name', 'last_name', 'party', 'age']

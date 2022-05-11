@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Candidates{% endblock %}
 {% block content %}
-    <h3>Candidates in our database </h3>
+    <h3>Candidates in our database </h3><br>
+    <form method="get">
+        {{myFilter.form}}
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form><br>
     <table class="table">
       <thead>
         <tr>
@@ -30,18 +34,5 @@
     </table>
 <a href="{% url 'home' %}" class="btn btn-secondary">Home</a><br/><br/>
 <a href="{% url 'add_candidate' %}" class="btn btn-primary"> Add a candidate </a><br/><br/>
-
-<form action="/your-name/" method="post">
-    <label for="party"> Partia </label>
-    <input id="party" type="text" name="party" value="{{ candidate.party }}" maxlength="100">
-
-    <label for="age"> Wiek </label>
-    <input id="age" type="number" name="age" value="{{ candidate.age }}">
-    <input type="submit" value="Filtruj">
-</form>
-
-<form method="get">
-   {{myFilter.form}}
-</form>
 
 {% endblock %}

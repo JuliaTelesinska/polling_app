@@ -7,13 +7,11 @@ import codecs
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from .filters import CandidateFilter
-from .forms import CandidateForms
 
 def starting(request):
     return render(request, 'polls/welcome.html')
 
-CandidateForm = modelform_factory(Candidate, exclude=[])
-
+CandidateForms = modelform_factory(Candidate, exclude=[])
 
 def add_candidate(request):
     if request.method == "POST":
@@ -25,13 +23,13 @@ def add_candidate(request):
         form = CandidateForms()
     return render(request, 'polls/add_candidate.html', {"form": form})
 
-EventForm = modelform_factory(Event, exclude=[])
-
-
 def view_candidates(request):
+    myFilter = CandidateFilter(request.GET, queryset=Candidate.objects.all())
+    candidates = myFilter.qs
     return render(request, 'polls/candidates.html',
-                  {"candidates": Candidate.objects.all()},)
+                  {"candidates": candidates, 'myFilter': myFilter},)
 
+EventForm = modelform_factory(Event, exclude=[])
 
 def view_elections(request):
     events_list = Event.objects.all()
@@ -52,6 +50,7 @@ def add_election(request):
         event = EventForm()
     return render(request, 'polls/add_election.html', {"event": event})
 
+PoliticalPartyForm = modelform_factory(PoliticalParty, exclude=[])
 
 def view_political_parties(request):
     return render(request, 'polls/political_parties.html',
@@ -66,9 +65,6 @@ def add_political_party(request):
     else:
         form = PoliticalPartyForm()
     return render(request, 'polls/add_political_party.html', {"form": form})
-
-PoliticalPartyForm = modelform_factory(PoliticalParty, exclude=[])
-
 
 def download_csv(request):
     response = HttpResponse(
@@ -87,7 +83,6 @@ def download_csv(request):
     return response
 
 def pie_chart(request):
-    #do poprawy
     data = []
     labels = []
     for event in Event.objects.all():
@@ -103,12 +98,3 @@ def pie_chart(request):
         'data': data,
     })
 
-def filtration(request):
-    candidates = Candidate.objects.all()
-    myFilter = CandidateFilter(request.GET, queryset=candidates)
-    candidates = myFilter.qs
-    context = {
-        'myFilter': myFilter,
-        'candidates': candidates,
-    }
-    return render(request, 'polls\candidates.html', context)
