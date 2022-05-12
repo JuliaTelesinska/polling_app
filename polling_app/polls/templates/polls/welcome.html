@@ -2,18 +2,18 @@
 {% block title %}Polling App{% endblock %}
 
 {% block content %}
-<h1>Cast your vote</h1><hr>
-<h3>Add your candidate and enable others to vote for them!</h3><br/>
+<h1>Find out everything about elections <i class="fa-solid fa-person-booth"></i></h1><hr>
+<h3>Add your candidate and enable others to vote for them! </h3><br/>
 
 <p>Check the available candidates below or add your own: </p><br/>
 <a href="{% url 'candidates' %}" class="btn btn-secondary"> See candidates </a><br/><br/>
-<a href="{% url 'add_candidate' %}" class="btn btn-primary"> Add a candidate </a>
+<a href="{% url 'add_candidate' %}" class="btn btn-primary"> <i class="fa-solid fa-plus"></i> Add a candidate </a>
 <br/><hr>
 <p>Check the upcoming elections or add your own: </p><br/>
 <a href="{% url 'elections' %}" class="btn btn-secondary"> See elections </a><br/><br/>
-<a href="{% url 'add_election' %}" class="btn btn-primary"> Add an election </a>
+<a href="{% url 'add_election' %}" class="btn btn-primary"> <i class="fa-solid fa-plus"></i> Add an election </a>
 <br/><hr>
 <p>Check the available political parties below or add your own: </p><br/>
 <a href="{% url 'view_political_parties' %}" class="btn btn-secondary"> See political parties </a><br/><br/>
-<a href="{% url 'add_political_party' %}" class="btn btn-primary"> Add a political party </a><br/><br/>
+<a href="{% url 'add_political_party' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add a political party </a><br/><br/>
 {% endblock %}

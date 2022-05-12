@@ -19,7 +19,7 @@
 
         {% if page_obj.has_previous %}
             <a href="?page=1"class="btn btn-secondary">first</a>
-            <a href="?page={{ page_obj.previous_page_number }}"class="btn btn-primary">&laquo; previous</a>
+            <a href="?page={{ page_obj.previous_page_number }}"class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> previous</a>
         {% endif %}
         <!---
          <span class="current">
@@ -27,14 +27,14 @@
         </span>
         --->
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">next &raquo;</a>
+            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">next <i class="fa-solid fa-arrow-right"></i></a>
             <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-secondary">last</a>
         {% endif %}
         <br/><br/>
 
     </span>
 </div>
-<a href="{% url 'add_election' %}" class="btn btn-primary"> Add an event </a><br/><br/>
-<a href="{% url 'download_csv' %}" class="btn btn-secondary">Download the election information in .csv format</a><br/><br/>
-<a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+<a href="{% url 'add_election' %}" class="btn btn-primary"> <i class="fa-solid fa-plus"></i> Add an event </a><br/><br/>
+<a href="{% url 'download_csv' %}" class="btn btn-secondary"><i class="fa-solid fa-download"></i> Download the election information in .csv format</a><br/><br/>
+<a href="{% url 'home' %}" class="btn btn-secondary"><i class="fa-solid fa-house"></i> Home</a>
 {% endblock %}
