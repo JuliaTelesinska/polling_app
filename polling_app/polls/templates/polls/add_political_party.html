@@ -9,8 +9,8 @@
     </table>
     <br/>
     {% csrf_token %}
-    <button type="submit" class="btn btn-primary">Submit a political party</button> <br/><br/>
-    <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Submit a political party</button> <br/><br/>
+    <a href="{% url 'home' %}" class="btn btn-secondary"><i class="fa-solid fa-house"></i> Home</a>
 </form>
 
 {% endblock %}
