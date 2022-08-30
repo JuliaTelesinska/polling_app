@@ -6,7 +6,7 @@ Project realized as a part of Webapplications classes.
 
 [@Swedeling](https://github.com/Swedeling) - Django & JavaScript Developer
 
-[@JuliaTelesinska](https://github.com/JuliaTelesinska) - Django Developer
+[@JuliaTelesinska](https://github.com/JuliaTelesinska) - Django Developer, UI/UX Designer
 
 # Previews
 
