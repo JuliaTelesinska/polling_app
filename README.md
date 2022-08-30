@@ -10,7 +10,7 @@ Project realized as a part of Webapplications classes.
 
 # Technologies
 
-This app was made using Python's Django framework, in the MTV architecture. It features filtering and paginating results and enables users to add their own entries into the database.  Dynamic pie chart was created with JavaScript. 
+This app was made using Python's Django framework, in the MTV architecture. It features filtering and paginating results and enables users to add their own entries into the database.  Dynamic pie chart was created with JavaScript. The page was styled with Bootstrap and Font Awesome.
 
 
 # Previews
