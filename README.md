@@ -8,6 +8,11 @@ Project realized as a part of Webapplications classes.
 
 [@JuliaTelesinska](https://github.com/JuliaTelesinska) - Django Developer, UI/UX Designer
 
+# Technologies
+
+This app was made using Python's Django framework, in the MTV architecture. It features filtering and paginating results and enables users to add their own entries into the database.  Dynamic pie chart was created with JavaScript. 
+
+
 # Previews
 
 ![image](https://user-images.githubusercontent.com/84772935/187361144-3d813ea8-0410-4fac-9154-0c2e8710f49b.png)
